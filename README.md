@@ -52,9 +52,4 @@ The download includes:
 
 ## 🛠️ Development
 
-This project is based on OpenWrt. To build from source:
-
-```bash
-git clone https://github.com/yourusername/zyxel-matrix-wsr30.git
-cd zyxel-matrix-wsr30
-# See docs/building-from-source.md for detailed instructions
+This project contains Buzybox which is based on OpenWrt. 
