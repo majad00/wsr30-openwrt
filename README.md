@@ -17,7 +17,7 @@ A custom OpenWrt-based operating system for the Zyxel Multy U AC2100 Tri-band Wi
 
 ## 📥 Quick Download
 
-👉 **[Download Latest Release](https://github.com/yourusername/zyxel-matrix-wsr30/releases/latest)**
+👉 **[Download Latest Release](https://github.com/majad00/zyxel-matrix/releases/tag/v4.0.0)**
 
 The download includes:
 - `Zyxel-Matrix-Loader.exe` - Windows / Linux flashing tool
