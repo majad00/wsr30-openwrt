@@ -1,26 +1,28 @@
-# Zyxel-Matrix Openwrt based firmware for WSR30 (Zyxel Multy U AC2100)
+# Zyxel-Matrix for WSR30 (Zyxel Multy U AC2100)
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](LICENSE)
-[![Release](https://github.com/majad00/zyxel-matrix/releases/tag/v4.0.0)
-[![Downloads](https://github.com/majad00/zyxel-matrix/releases/tag/v4.0.0)
+[![Release](https://img.shields.io/github/v/release/yourusername/zyxel-matrix-wsr30)](https://github.com/majad00/zyxel-matrix/releases/tag/v4.0.0)
+[![Downloads](https://img.shields.io/github/downloads/yourusername/zyxel-matrix-wsr30/total)](https://github.com/majad00/zyxel-matrix/releases/download/v4.0.0/Zyxel-Matrix-WSR30-v4.0.0.zip)
 
 A custom OpenWrt-based operating system for the Zyxel Multy U AC2100 Tri-band WiFi Mesh router (WSR30).
 
 ## ✨ Features
 
-- **Easy Installation** - No UART or disassembly required! Installation using LAN port
+- **Easy Installation** - No UART or disassembly required! Just TFTP recovery mode
 - **Dual Mode Operation** - AP Mode (default) and Bridge/Repeater Mode
 - **Full Luci Web Interface** - Manage your router through any browser
 - **Advanced WiFi Control** - Expert settings for all three bands (Wlan0, Wlan1, Wlan2)
 - **SSH Access** - In both operating modes
+- **Root access with full previliges 
 - **Active Development** - Regular updates and new features
+- **Source and pre cross-compiled binary ready to install
 
 ## 📥 Quick Download
 
 👉 **[Download Latest Release](https://github.com/majad00/zyxel-matrix/releases/tag/v4.0.0)**
 
 The download includes:
-- `Zyxel-Matrix-Loader.exe` - Windows / Linux flashing tool
+- `Zyxel-Matrix-Loader.exe` - Windows flashing tool
 - `README.txt` - Complete instructions
 - `CHANGELOG.txt` - Version history
 
@@ -32,8 +34,7 @@ The download includes:
 4. **Run Loader**: Select firmware → click Flash
 5. **Wait** 2-3 minutes for first boot
 6. **Connect WiFi**: `Zyxel_Matrix_24` / `12345678`
-7. **Configure**: http://192.168.2.1 (root/1234) AP MODE ( Default after installation)
-8. **Configure**: http://192.168.1.5 (root/1234) Repeater MODE
+7. **Configure**: http://192.168.2.1 (root/1234)
 
 > ⚠️ **IMPORTANT**: Change default passwords immediately after first boot!
 
@@ -52,4 +53,5 @@ The download includes:
 
 ## 🛠️ Development
 
-This project contains Buzybox which is based on OpenWrt. 
+This project include busybox based on OpenWrt. To build from source:
+See Source, for installing precompiled firmware see Release, for firmware loader see Windows or Linux
