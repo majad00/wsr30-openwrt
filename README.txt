@@ -1,6 +1,7 @@
 ================================================
 ZYXEL-MATRIX FIRMWARE LOADER FOR WSR30 ROUTER
 ================================================
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](LICENSE)
 
 Version: 2.0.0
 Author: Qureshi Majad
