@@ -1,0 +1,11 @@
+⚡ QUICK START GUIDE - ZYXEL-MATRIX WSR30 ⚡
+
+1. CONNECT: Ethernet cable from PC to router
+2. SET IP: PC Ethernet to 192.168.1.10
+3. RECOVERY: Hold reset + power on → wait for GREEN light
+4. FLASH: Run loader → select firmware → click flash
+5. WAIT: 2-3 minutes for first boot
+6. CONNECT: WiFi: Zyxel_Matrix_24 / 12345678
+7. LOGIN: http://192.168.2.1 (root/1234)
+
+⚠️ Change default passwords immediately!

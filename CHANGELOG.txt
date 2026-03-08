@@ -1,0 +1,139 @@
+================================================
+ZYXEL-MATRIX FIRMWARE CHANGELOG
+================================================
+
+Version: 2.0.0 March 2026 (Public release)
+Author: Qureshi Majad
+Router: Zyxel Multy U AC2100 (WSR30)
+
+--------------------------------------------------------------------
+
+RELEASE NOTES
+-------------
+Initial stable release of Zyxel-Matrix firmware for WSR30 router.
+This release focuses on stability and essential features with a 
+user-friendly web interface.
+
+--------------------------------------------------------------------
+
+NEW FEATURES
+------------
+• Complete Luci web interface for easy router management
+• Dual-mode operation (AP Mode / Bridge Repeater Mode)
+• Custom DHCP configuration pages for Zyxel
+• Advanced LAN configuration interface
+• Professional WiFi settings for expert users:
+  - Wlan0 (2.4GHz) advanced configuration
+  - Wlan1 (5GHz) advanced configuration
+  - Wlan2 (additional band) advanced configuration
+• SSH access in both operating modes
+• Automatic mode detection and configuration
+• Recovery mode TFTP flashing support
+
+--------------------------------------------------------------------
+
+IMPROVEMENTS
+------------
+• Enhanced stability compared to previous releases
+• Optimized boot time for faster startup
+• Improved WiFi signal strength and range
+• Better mesh networking capabilities
+• Streamlined web interface navigation
+• Reduced memory footprint
+
+--------------------------------------------------------------------
+
+BUG FIXES
+---------
+• Removed RPCD bug found in early release versions
+  - Fixed process crashes
+  - Improved system stability
+  - Better resource management
+• Fixed SSH access issues in repeater mode
+  - Now accessible at 192.168.1.5
+  - Reliable connection establishment
+• Corrected DHCP lease issues in AP mode
+• Resolved WiFi channel selection problems
+• Fixed LED indication in different modes
+
+--------------------------------------------------------------------
+
+KNOWN ISSUES
+------------
+• First boot takes approximately 2-3 minutes
+• Some advanced WiFi features require manual configuration
+• Repeater mode requires manual IP assignment for management
+• Limited documentation for advanced features (coming soon)
+
+--------------------------------------------------------------------
+
+COMING SOON (Future Releases)
+-----------------------------
+
+• VPN server integration
+• Advanced QoS settings
+• Parental controls
+• Guest network isolation
+• Automatic firmware updates
+• Mobile app integration
+• Network statistics and monitoring
+• VLAN support
+
+--------------------------------------------------------------------
+
+INSTALLATION NOTES
+------------------
+REQUIRED FILES:
+   • Zyxel-Matrix-Loader.exe 
+   • openwrt-zyxel-matrix-14.07-rtkmips-wsr30-squashfs-sysupgrade-v4.0 (v4.0.0)
+
+COMPATIBILITY:
+   • Router: Zyxel Multy U AC2100 (WSR30) only
+   • OS: Windows 10/11 (with TFTP client enabled)
+   • Browser: Chrome, Firefox, Edge (for Luci interface)
+
+UPGRADE NOTES:
+   • Always backup configuration before upgrading
+   • Use same flashing procedure as initial install
+   • Settings may need reconfiguration after upgrade
+
+--------------------------------------------------------------------
+
+VERSION HISTORY
+---------------
+1.8.0 (November 2025)
+   • Initial public release, only to intranet users
+   • Stable AP mode operation
+   • Working repeater mode
+   • Complete Luci interface
+   • Fixed early release bugs
+
+1.5.0 (February 2026) - Beta
+   • Beta testing release
+   • Basic functionality
+   • Known RPCD issues
+   • Limited WiFi configuration
+
+1.0.0 (March 2025) - Alpha
+   • Internal testing only
+   • Not for public use
+   • Development preview
+
+--------------------------------------------------------------------
+
+CONTRIBUTORS
+------------
+• Your Name - Lead Developer
+• OpenWrt Community - Base system
+• Beta Testers - Bug reporting and feedback
+
+--------------------------------------------------------------------
+
+LICENSE
+-------
+This firmware is based on OpenWrt and is subject to its licenses.
+Modifications and additions are provided under GPL v2.
+
+--------------------------------------------------------------------
+For latest updates and information, visit:
+[Your website/GitHub repository URL]
