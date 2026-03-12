@@ -102,17 +102,17 @@ Note: All these commands assume the SDK root is:
 /home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/realtek/
 
 Manually Compiling WiFi Drivers
+```bash
 cd /home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/realtek/build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c/linux-3.10.49/drivers/net/wireless/rtl8822bu/
-
 cd /home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/realtek
-
 make -C build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c/linux-3.10.49 \
 ARCH="mips" \
 CROSS_COMPILE="mips-openwrt-linux-uclibc-" \
 M="drivers/net/wireless/rtl8822bu" \
 CONFIG_RTL8822BU=m
-
+```
 Manually Compiling Loader.bin (LZMA Loader)
+```bash
 cd /home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/target/linux/rtkmips/image/lzma-loader
 export STAGING_DIR=/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/staging_dir
 make clean
@@ -123,8 +123,9 @@ LOADADDR=0x80000000 \
 BOARD="AP" \
 KERNEL_CMDLINE="console=ttyS0,38400 root=/dev/mtdblock3 rootfstype=squashfs init=/sbin/init" \
 LOADER_DATA=/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c/linux-3.10.49/vmlinux.lzma
-
+```
 Manually Compiling SquashFS
+```bash
 # Define the paths
 ROOT_DIR="/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/build_dir/target-mips_24kec_uClibc-0.9.33.2/root-rtkmips"
 KDIR="/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c"
@@ -138,8 +139,9 @@ rm $KDIR/root.squashfs
 -p '/dev/console c 600 0 0 5 1' \
 -p '/dev/ttyS0 c 666 0 0 4 64' \
 -p '/dev/null c 666 0 0 1 3'
-
+```
 Manually Compiling Kernel
+```bash
 cd /home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c/linux-3.10.49
 export PATH=$PATH:/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/staging_dir/toolchain-mips_24kec_gcc-4.8-linaro_uClibc-0.9.33.2/bin
 export ARCH=mips
@@ -153,7 +155,7 @@ xz --format=lzma --lzma1=lc=3,lp=0,pb=2,dict=512KiB -c vmlinux > vmlinux.lzma
 Version 2 - Alternative method using objcopy and lzma
 mips-openwrt-linux-objcopy -O binary vmlinux vmlinux.bin
 lzma e vmlinux.bin vmlinux.lzma -d512k -lc3 -lp0 -pb2
-
+```
 **Important** Notes
 For Bank 2 installation, change mtdblock3 to mtdblock6 in all kernel command lines
 The SIZE parameter in NANDW commands must be the exact hex size of the TFTP upload
