@@ -48,7 +48,7 @@ The download includes:
 | Mode | IP Address | WiFi SSID | WiFi Password | Login |
 |------|------------|-----------|---------------|-------|
 | **AP Mode** | 192.168.2.1 | Zyxel_Matrix_24 / Zyxel_Matrix_5G | 12345678 | root/1234 |
-| **Repeater Mode** | 192.168.1.5 | (extends existing network) | N/A | root/1234 |
+| **Repeater Mode** | 192.168.1.5 | Same SSID (extends existing network) | 12345678| root/1234 |
 
 ## 🛠️ Development
 
