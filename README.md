@@ -40,8 +40,7 @@ The download includes:
 
 ## 📋 Detailed Documentation
 
-- [Flashing Guide](docs/flashing-guide.md)
-- [Building from Source](docs/building-from-source.md)
+- [Building from Source](docs/build_guide.md)
 - [Changelog](CHANGELOG.md)
 
 ## 🔧 Default Settings
