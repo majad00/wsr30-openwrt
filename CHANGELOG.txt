@@ -55,6 +55,7 @@ BUG FIXES
 • Corrected DHCP lease issues in AP mode
 • Resolved WiFi channel selection problems
 • Fixed LED indication in different modes
+• ETH0 port bug is fixed, works after device reset.
 
 --------------------------------------------------------------------
 
