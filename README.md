@@ -41,7 +41,7 @@ The download includes:
 ## 📋 Detailed Documentation
 
 - [Building from Source](docs/build_guide.md)
-- [Changelog](CHANGELOG.md)
+- [Changelog](CHANGELOG.txt)
 
 ## 🔧 Default Settings
 
