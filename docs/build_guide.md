@@ -62,20 +62,32 @@ UART CONNECTION GUIDE
 
 <img width="1536" height="2048" alt="image" src="https://github.com/user-attachments/assets/2532cdbc-8d5e-44e5-8b76-afa5dc57ae2a" />
 
-After you access the Realtek prompt, Set up the Ethernet connection with the following command:
+After you access the Realtek prompt, set up the Ethernet connection with the following commands:
+
+```bash
 ETH
 ipconfig 192.168.1.6
 autoburn 0
-Now go to Windows or Linux and send firmware (Windows: tftp -i 192.168.1.6 put firmware.bin)
-choose one of Bank to flash firmware, recommended is Bank 2.
-Flashing Bank 1
+```
+
+Now go to Windows or Linux and send firmware:
+`tftp -i 192.168.1.6 put firmware.bin`
+
+Choose a Bank to flash; **Bank 2** is recommended.
+
+**Flashing Bank 1:**
+```bash
 nandbe 40 27F
 NANDW 800000 A0500000 SIZE
 db 1
-Flashing Bank 2
+```
+
+**Flashing Bank 2:**
+```bash
 nandbe 2C0 4FF
 NANDW 5800000 A0500000 SIZE
 db 1
+```
 
 **Troubleshooting**
 If the kernel refuses to load or you encounter a compression error, ensure the following specific settings in the Makefile. Change mtdblock3 to mtdblock6 for bank 2 installation:
