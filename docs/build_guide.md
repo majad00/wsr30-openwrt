@@ -56,27 +56,30 @@ console=ttyS0,38400 mtdparts=rtk_nand:5M(boot),3M(setting),4M(kernel),68M(rootfs
 Flashing the Binary
 Use the following NANDW commands to burn the resulting binary:
 
-Open the router and locate the TX, RX, and ground wires. Connect them accordingly. One wire should be connected to Realtek prompt (by pressing ESC during the boot process)
+Open the router and locate the TX, RX, and ground wires. Connect them accordingly. Once connected you should be able to see Realtek prompt (by pressing ESC during the boot process)
+
+UART CONNECTION GUIDE
+
+<img width="1536" height="2048" alt="image" src="https://github.com/user-attachments/assets/2532cdbc-8d5e-44e5-8b76-afa5dc57ae2a" />
+
+
 
 Set up the Ethernet connection with the following command:
 
-plaintext
 ipconfig 192.168.1.6
-Execute the command autoburn 0. For example, using TFTP on Windows:
-
-cmd
+autoburn 0
+now go to windows or linux PC to push firmware For example, using TFTP on Windows:
 tftp -i 192.168.1.6 put firmware.bin
-Once TFTP is complete, burn using the following commands, selecting Bank 1 or Bank 2.
+Once TFTP is complete, burn using the following commands, selecting Bank 1 or Bank 2. SIZE is the exact hex size of tftp upload
 
-Bank 1
-plaintext
+Bank 1:
 nandbe 40 27F
 NANDW 800000 A0500000 SIZE
 db 1
-Bank 2
-plaintext
+
+Bank 2:
 nandbe 2C0 4FF
-NANDW 5800000 A0500000
+NANDW 5800000 A0500000 SIZE
 db 1
 
 
@@ -88,3 +91,65 @@ LZMA_TEXT_START=0x80c00000 \
 LOADADDR=0x80000000 \
 BOARD="AP" \
 KERNEL_CMDLINE=console=ttyS0,38400 root=/dev/mtdblock3 rootfstype=squashfs init=/sbin/init
+
+=================GUIDE TO MANUALLY COMPILE============
+all these commands assume the SDK root as "SDK ROOT IS "/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/realtek/"
+
+>>>>>> MANUALLY COMPILING WIFI DRIVERS 
+
+cd /home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/realtek/build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c/linux-3.10.49/drivers/net/wireless/rtl8822bu/
+cd /home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/realtek
+make -C build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c/linux-3.10.49 \
+ARCH="mips" \
+CROSS_COMPILE="mips-openwrt-linux-uclibc-" \
+M="drivers/net/wireless/rtl8822bu" \
+CONFIG_RTL8822BU=m \
+
+>>>>>> MANUALLY COMPILING LOADER:BIN ( LZMA LOADER)
+cd /home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/target/linux/rtkmips/image/lzma-loader
+export STAGING_DIR=/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/staging_dir
+make clean
+make loader.bin \
+CROSS_COMPILE=/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/staging_dir/toolchain-mips_24kec_gcc-4.8-linaro_uClibc-0.9.33.2/bin/mips-openwrt-linux-uclibc- \
+LZMA_TEXT_START=0x80c00000 \
+LOADADDR=0x80000000 \
+BOARD="AP" \
+KERNEL_CMDLINE=console=ttyS0,38400 root=/dev/mtdblock3 rootfstype=squashfs init=/sbin/init\" \
+LOADER_DATA=/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c/linux-3.10.49/vmlinux.lzma
+
+>>>>>> MANUALLY COMPILING SQUASHFS
+# 1. Define the paths
+ROOT_DIR="/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/build_dir/target-mips_24kec_uClibc-0.9.33.2/root-rtkmips"
+KDIR="/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c"
+MKSQUASHFS="/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/squashfs-new/squashfs-tools/mksquashfs_mips_be"
+
+# 2. Generate the rootfs directly into KDIR
+rm $KDIR/root.squashfs
+#/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/squashfs-tools/squashfs-tools/mksquashfs \
+/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/realtek/staging_dir/host/bin/mksquashfs4 $ROOT_DIR $KDIR/root.squashfs \
+-nopad -noappend -root-owned -comp xz
+-p '/dev d 755 0 0' \
+-p '/dev/console c 600 0 0 5 1' \
+-p '/dev/ttyS0 c 666 0 0 4 64' \
+-p '/dev/null c 666 0 0 1 3'
+
+>>>>>> MANUALLY COMPILING KERNEL
+cd /home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c/linux-3.10.49
+export PATH=$PATH:/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/staging_dir/toolchain-mips_24kec_gcc-4.8-linaro_uClibc-0.9.33.2/bin
+export ARCH=mips
+export CROSS_COMPILE=mips-openwrt-linux-
+# edit "nano arch/mips/kernel/vmlinux.lds"
+make vmlinux LDFLAGS_vmlinux="-e 0x80003c10"
+
+version 1
+xz --format=lzma --lzma1=lc=3,lp=0,pb=2,dict=512KiB -c vmlinux > vmlinux.lzma
+
+version 2
+mips-openwrt-linux-objcopy -O binary vmlinux vmlinux.bin
+lzma e vmlinux.bin vmlinux.lzma -d512k -lc3 -lp0 -pb2
+
+>>>>>> MANUALLY COMPILING
+
+>>>>>> MANUALLY COMPILING
+
+>>>>>> MANUALLY COMPILING 
