@@ -8,24 +8,26 @@ A custom OpenWrt-based operating system for the Zyxel Multy U AC2100 Tri-band Wi
 
 ## ✨ Features
 
-- **Easy Installation** - No UART or disassembly required! Instal Zyxel-Matrix over LAN
+- **Easy Installation** - No UART or disassembly required! Install over LAN
 - **Dual Mode Operation** - AP Mode (default) and Bridge/Repeater Mode
 - **Full Luci Web Interface** - Manage your router through any browser
 - **Advanced WiFi Control** - Expert settings for all three Radios (Wlan0, Wlan1, Wlan2)
 - **SSH Access** - In both operating modes
-- **Root access with full previliges 
+- **Root access** - Zyxel-Matrix OS with full previliges 
 - **Tri band radio** - Backhauld 5GH radio plus regular 2.4 and 5GH radios
-- **Source and pre cross-compiled binary ready to install
+- **pre compiled** - cross-compiled binary ready to install
+  
 
 ## 📥 Quick Download
 
 👉 **[Download Latest Release](https://github.com/majad00/wsr30-openwrt/releases/download/v4.0.0/Zyxel-Matrix-WSR30-v4.1.zip)**
 
 The download includes:
-- `Zyxel-Matrix-Loader.exe` - Windows flashing tool
+- `Zyxel-Matrix-Loader.exe` - Windows / Linux flashing tool
 - `README.txt` - Complete instructions
 - `CHANGELOG.txt` - Version history
-
+- `docs` - for detail documentations and installation
+  
 ## 🚀 Flashing in 30 Seconds
 
 1. **Connect** Ethernet cable from PC to router
