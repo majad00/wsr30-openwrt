@@ -8,7 +8,7 @@ A custom OpenWrt-based operating system for the Zyxel Multy U AC2100 Tri-band Wi
 
 ## ✨ Features
 
-- **Easy Installation** - No UART or disassembly required! upgrade over LAN
+- **Easy Installation** - No UART or disassembly required! Instal Zyxel-Matrix over LAN
 - **Dual Mode Operation** - AP Mode (default) and Bridge/Repeater Mode
 - **Full Luci Web Interface** - Manage your router through any browser
 - **Advanced WiFi Control** - Expert settings for all three Radios (Wlan0, Wlan1, Wlan2)
