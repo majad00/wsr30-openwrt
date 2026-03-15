@@ -8,13 +8,13 @@ A custom OpenWrt-based operating system for the Zyxel Multy U AC2100 Tri-band Wi
 
 ## ✨ Features
 
-- **Easy Installation** - No UART or disassembly required! Just TFTP recovery mode
+- **Easy Installation** - No UART or disassembly required! Just use TFTP upload (loader is provided for Windows and Linux)
 - **Dual Mode Operation** - AP Mode (default) and Bridge/Repeater Mode
 - **Full Luci Web Interface** - Manage your router through any browser
 - **Advanced WiFi Control** - Expert settings for all three bands (Wlan0, Wlan1, Wlan2)
 - **SSH Access** - In both operating modes
 - **Root access with full previliges 
-- **Active Development** - Regular updates and new features
+- **Tri band radio** - Backhauld 5GH radio plus regular 2.4 and 5GH radios
 - **Source and pre cross-compiled binary ready to install
 
 ## 📥 Quick Download
