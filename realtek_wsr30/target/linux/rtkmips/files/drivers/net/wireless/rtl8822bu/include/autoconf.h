@@ -1,0 +1,74 @@
+/******************************************************************************
+ *
+ * by majad qureshi at lut.fi
+ *
+ *****************************************************************************/
+
+
+#ifndef AUTOCONF_INCLUDED
+#define AUTOCONF_INCLUDED
+
+#define RTL871X_MODULE_NAME "88x2BU"
+#define DRV_NAME "rtl88x2bu"
+#define CONFIG_SINGLE_IMG
+
+/* --- FORCE USB / KILL PCIE --- */
+#define CONFIG_USB_HCI
+#undef CONFIG_PCI_HCI
+#undef CONFIG_SDIO_HCI
+
+/* --- TARGET CHIP --- */
+#define CONFIG_RTL8822B
+#define RTW_HALMAC
+#define HALMAC_8822B_SUPPORT
+#define HAL_8822B_SUPPORT
+
+/* --- SYSTEM CONFIG --- */
+#define PLATFORM_LINUX
+
+#ifndef CONFIG_BIG_ENDIAN
+    #define CONFIG_BIG_ENDIAN
+#endif
+
+#undef CONFIG_LITTLE_ENDIAN
+#define EXPORT_SYMTAB
+
+
+/* --- WIRELESS FEATURES --- */
+#define CONFIG_80211N_HT
+#define CONFIG_80211AC_VHT
+#define CONFIG_BEAMFORMING
+#define CONFIG_ANTENNA_DIVERSITY
+#define CONFIG_HW_ANTENNA_DIVERSITY
+#define CONFIG_BT_COEXIST
+
+/* --- AP & NETWORK MODE --- */
+#define CONFIG_AP_MODE
+#define CONFIG_NATIVEAP_MLME
+#define CONFIG_P2P
+#define CONFIG_WFD
+#define CONFIG_IOCTL_CFG80211
+#define RTW_USE_CFG80211_STA_EVENT
+#define CONFIG_CFG80211_FORCE_COMPATIBLE_2_6_37_UNDER
+
+/* --- ODM / PHYDM CONFIG --- */
+#define DM_ODM_SUPPORT_TYPE 0x04
+#define ODM_CE 0x04
+#define CONFIG_PHYDM
+#define CONFIG_RTW_ADAPTIVITY_EN
+#define CONFIG_RTW_ADAPTIVITY_MODE 0
+
+/* --- USB SPECIFIC --- */
+#define CONFIG_USB_TX_AGGREGATION
+#define CONFIG_USB_RX_AGGREGATION
+#define CONFIG_USB_VENDOR_REQ_BUFFER_PREALLOC
+#define CONFIG_USB_VENDOR_REQ_MUTEX
+#define USB_INTERFERENCE_ISSUE
+
+/* --- HARDWARE / EFUSE --- */
+#define CONFIG_EMBEDDED_FWIMG
+#define LOAD_FW_HEADER_FROM_DRIVER
+#define CONFIG_RX_PACKET_APPEND_FCS
+#define CONFIG_RECV_REORDERING_CTRL
+
+#endif /* AUTOCONF_INCLUDED */

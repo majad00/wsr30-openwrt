@@ -1,0 +1,6 @@
+#!/bin/sh
+mount -t tmpfs tmpfs /mnt
+mkdir -p /mnt/mtd8
+mount -t yaffs2 -o "tags-ecc-off,inband-tags" /dev/mtdblock8 /mnt/mtd8
+mount --bind /mnt/mtd8 /etc/config
+exit 0

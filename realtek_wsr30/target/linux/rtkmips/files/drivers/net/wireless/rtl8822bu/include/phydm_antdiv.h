@@ -1,0 +1,1 @@
+/home/majad/OpenWrt/wsr30/openwrt_rtk/rtk_openwrt_sdk/realtek/build_dir/target-mips_24kec_uClibc-0.9.33.2/linux-rtkmips_rtl8198c/linux-3.10.49/drivers/net/wireless/rtl8822bu/hal/phydm/phydm_antdiv.h

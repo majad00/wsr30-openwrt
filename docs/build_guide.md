@@ -1,4 +1,18 @@
-# Building from Source: Router Hardware Specs
+# Building from working source (realtek_wsr30)
+
+```bash
+cd realtek_wsr30
+./scripts/feeds update -a 
+./scripts/feeds install -a
+make -i
+```
+
+The firmware is generate in bin/rtkmips/openwrt-wsr30-firmware.bin
+to flash it you need to use UART connection, for detail see section below go to "Flashing the binary"
+
+
+
+#  Router Hardware Specs
 
 ## Hardware Specifications
 - **CPU:** MIPS 1074Kc (Realtek RTL8198C)
@@ -9,7 +23,7 @@
 - **WiFi:** Realtek 8822B (USB-connected)
 - **Bootloader:** Zyxel Multiboot (proprietary)
 
-## Compilation Instructions
+## Building from MASTER Source: ( see source folder for the original source files)
 
 The source code must be compiled separately, and the master copy requires some modifications. Follow these steps:
 
@@ -53,7 +67,7 @@ Make sure to use the exact console command after partition modifications:
 console=ttyS0,38400 mtdparts=rtk_nand:5M(boot),3M(setting),4M(kernel),68M(rootfs) root=/dev/mtdblock3 rootfstype=squashfs ro init=/sbin/init
 
 
-Flashing the Binary
+# Flashing the Binary.
 Use the following NANDW commands to burn the resulting binary:
 
 Open the router and locate the TX, RX, and ground wires. Connect them accordingly. Once connected you should be able to see Realtek prompt (by pressing ESC during the boot process)

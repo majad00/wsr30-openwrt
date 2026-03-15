@@ -1,0 +1,20 @@
+#!/bin/sh
+[ -f /etc/banner ] && cat /etc/banner
+
+export PATH=/usr/bin:/usr/sbin:/bin:/sbin
+export HOME=$(grep -e "^${USER:-root}:" /etc/passwd | cut -d ":" -f 6)
+export HOME=${HOME:-/root}
+export PS1='\u@\h:\w\$ '
+
+[ -x /bin/more ] || alias more=less
+[ -x /usr/bin/vim ] && alias vi=vim || alias vim=vi
+
+[ -z "$KSH_VERSION" -o \! -s /etc/mkshrc ] || . /etc/mkshrc
+
+[ -x /usr/bin/arp ] || arp() { cat /proc/net/arp; }
+[ -x /usr/bin/ldd ] || ldd() { LD_TRACE_LOADED_OBJECTS=1 $*; }
+# Auto-mount data partition on login if not already mounted added by majad
+if ! grep -q "/mnt/mtd8" /proc/mounts; then
+    mkdir -p /mnt/mtd8
+    mount -t yaffs2 -o "tags-ecc-off,inband-tags" /dev/mtdblock8 /mnt/mtd8
+fi

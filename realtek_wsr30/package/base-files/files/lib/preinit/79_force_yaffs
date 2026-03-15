@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# Source the pivot function library
+. /lib/functions/preinit.sh
+
+do_yaffs_overlay() {
+    local mtd_dev="/dev/mtdblock8"
+    local mount_point="/overlay"
+    local mount_opts="-o tags-ecc-off,inband-tags"
+
+    # 1. Safety check
+    grep -q "$mount_point" /proc/mounts && return
+
+    echo "PREINIT: Hook 79. Mounting YAFFS2 with opts: $mount_opts"
+
+    mkdir -p $mount_point
+    mount -t yaffs2 $mount_opts $mtd_dev $mount_point
+
+    # 2. HEALTH CHECK & FORMAT
+    local used_kb=$(df -k $mount_point | awk 'NR==2 {print $3}')
+    if [ -z "$used_kb" ] || [ "$used_kb" -gt 4096 ]; then
+        echo "PREINIT: Partition Dirty ($used_kb KB). FORMATTING..."
+        umount $mount_point
+        mtd erase rootfs_data
+        mount -t yaffs2 $mount_opts $mtd_dev $mount_point
+    fi
+
+    # 3. FORCE PIVOT (The Fix for RAM Issue)
+    # This tells OpenWrt: "Merge /overlay (Flash) with /rom and make it the new /"
+    if grep -q "$mount_point" /proc/mounts; then
+        echo "PREINIT: Forcing Pivot to YAFFS2..."
+        fopivot $mount_point /rom
+    fi
+}
+
+boot_hook_add preinit_mount_root do_yaffs_overlay
